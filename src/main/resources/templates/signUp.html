@@ -20,6 +20,10 @@
             margin: 160px auto;
             border-radius: 10px;
         }
+        img {
+            width:40px;
+            height:40px;
+        }
         span {
             font: normal 400 40px 楷体;
             color:blue;
@@ -54,12 +58,14 @@
             <div id="nameId" class="red" style="color:red;"></div></div>
         <div class="div">
             <span>密码：</span><input type="password" name="password" id="password" placeholder="请输入密码"
-                        class="inputs" onchange="checkPwd()"/><br/><br/>
+                        class="inputs" onchange="checkPwd()"/>
+            <img id="eye" src="/image/eyeclose.jpg" alt=""><br/><br/>
             <div id="passwordId" class="red" style="color:red;"></div></div>
-        <span>确认密码:</span><input type="password" id="paw"><br/><br/>
+        <span>确认密码:</span><input type="password" id="paw">
+        <img id="eye1" src="/image/eyeclose.jpg" alt=""><br/><br/>
         <input type="button" id="btn" style="display: block" value="确定"
                onclick="checkRepwd()"/><br/><br/>
-        <input type="submit" name="sign" id="signup" style="display: none" value="提交">
+        <input type="submit" name="sign" id="signup" style="display: none" value="提交"  onclick="change()">
     </form>
 </body>
 </html>
@@ -84,7 +90,7 @@
             return false;
         }
         if (reg1.test(password)) {
-            document.getElementById("passwordId").innerHTML = "请输入由数字与字母组成的密码";
+            document.getElementById("passwordId").innerHTML = "请勿输入纯数字";
             return false;
         } else {
             document.getElementById("passwordId").innerHTML = "输入正确";
@@ -92,16 +98,61 @@
         }
     }
     function checkRepwd(){
+        const name = document.getElementById("name").value;
         const paw = document.getElementById("paw").value;
         const password = document.getElementById("password").value;
-        if(paw === password && paw !== "" && checkName() === true && checkPwd() === true ){
+        if(name === "" || password === ""){
+            alert("用户名或密码不能为空")
+            return false;
+        }else if(checkName() === false || checkPwd() === false){
+            alert("用户名或密码格式错误")
+            return false;
+        }else if(paw !== password){
+            alert("两次输入的密码不一致")
+            return false;
+        }else{
             document.getElementById("passwordId").innerHTML="输入正确"
             document.getElementById("btn").style.display="none"
             document.getElementById("signup").style.display="block"
+            document.getElementById("name").disabled=true
+            document.getElementById("password").disabled=true
+            document.getElementById("paw").disabled=true
             return true;
-        }else{
-            alert("请符合规范")
-            return false;
+        }
+    }
+    //解锁用户名，密码，确认密码，以便获取
+    function change() {
+        document.getElementById("name").disabled = false
+        document.getElementById("password").disabled = false
+        document.getElementById("paw").disabled = false
+        return true;
+    }
+    const eye = document.getElementById('eye');
+    const password = document.getElementById('password');
+    let flag = 1;
+    eye.onclick = function () {
+        if (flag === 1) {
+            password.type = 'text';
+            eye.src = '/image/eyeopen.jpg';
+            flag = 2;
+        } else {
+            password.type = 'password';
+            eye.src = '/image/eyeclose.jpg';
+            flag = 1;
+        }
+    }
+    const eye1 = document.getElementById('eye1');
+    const paw = document.getElementById('paw');
+    let flor = 1
+    eye1.onclick = function () {
+        if (flor === 1) {
+            paw.type = 'text';
+            eye1.src = '/image/eyeopen.jpg';
+            flor = 2;
+        } else {
+            paw.type = 'password';
+            eye1.src = '/image/eyeclose.jpg';
+            flor = 1;
         }
     }
 </script>
