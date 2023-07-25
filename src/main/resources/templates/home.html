@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        div {
+            width:500px;
+            height: 400px;
+            background-color: skyblue;
+            padding: 50px;
+            border: 3px solid #000;
+            margin: 160px auto;
+            border-radius: 10px;
+        }
+       h1 {
+            width: auto;
+            height: auto;
+            font: normal 400 40px/2 楷体;
+            text-align: center;
+            text-decoration: none;
+            color: blue
+        }
+        #loginIn,
+        #register,
+        #users {
+           width: 400px;
+           height: 50px;
+           font: normal 400 40px/2 楷体;
+           text-align: center;
+           text-decoration: none;
+           color: blue
+       }
+
+
+    </style>
+</head>
+<body>
+<div>
+<h1>欢迎来到首页，请选择：</h1>
+<!--    点击按钮跳转界面-->
+<form role="form" action = "/login" method="post" >
+    <input type="submit" id = "loginIn" value = "登录">
+</form>
+<form role="form" action="/signup" method="post" >
+    <input type="submit" id="register" value="注册">
+</form>
+    <form role="form" action="/user" method="post" >
+        <input type="submit" id="users" value="查询">
+    </form>
+</div>
+</body>
+</html>

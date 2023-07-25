@@ -1,0 +1,107 @@
+<!--注册页面-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        form {
+            width:500px;
+            height: 500px;
+            background-color: skyblue;
+            padding-top:20px;
+            padding-left: 50px;
+            border: 3px solid #000;
+            margin: 160px auto;
+            border-radius: 10px;
+        }
+        span {
+            font: normal 400 40px 楷体;
+            color:blue;
+        }
+        #name,
+        #password,
+        #paw {
+            width: 400px;
+            height: 40px;
+            font: normal 400 40px/2 楷体;
+            text-align: center;
+            text-decoration: none;
+            color: blue
+        }
+        #btn,
+        #signup {
+            display:flex;
+            width: 400px;
+            height: 50px;
+            font: normal 400 40px/2 楷体;
+            text-align: center;
+            text-decoration: none;
+            color: blue
+        }
+    </style>
+</head>
+<body>
+    <form role="form" action="/register" method="post">
+        <div class="div">
+            <span>姓名:</span><input type="text" name="name" id="name" placeholder="请输入账户"
+                        class="inputs" onchange="checkName()"/><br/><br/>
+            <div id="nameId" class="red" style="color:red;"></div></div>
+        <div class="div">
+            <span>密码：</span><input type="password" name="password" id="password" placeholder="请输入密码"
+                        class="inputs" onchange="checkPwd()"/><br/><br/>
+            <div id="passwordId" class="red" style="color:red;"></div></div>
+        <span>确认密码:</span><input type="password" id="paw"><br/><br/>
+        <input type="button" id="btn" style="display: block" value="确定"
+               onclick="checkRepwd()"/><br/><br/>
+        <input type="submit" name="sign" id="signup" style="display: none" value="提交">
+    </form>
+</body>
+</html>
+<script>
+    function checkName() {
+        const name = document.getElementById("name").value;
+        const reg = /^\S{2,12}$/;
+        if (!reg.test(name)) {
+            document.getElementById("nameId").innerHTML = "输入除空格以外的2-12位字符";
+            return false;
+        } else {
+            document.getElementById("nameId").innerHTML = "输入正确";
+            return true;
+        }
+    }
+    function checkPwd() {
+        const password = document.getElementById("password").value;
+        const reg = /^[a-zA-Z0-9]{4,12}$/;
+        const reg1 = /^\d{4,12}$/;
+        if (!reg.test(password)) {
+            document.getElementById("passwordId").innerHTML = "输入长度为4-12个数字字母组成的字符";
+            return false;
+        }
+        if (reg1.test(password)) {
+            document.getElementById("passwordId").innerHTML = "请输入由数字与字母组成的密码";
+            return false;
+        } else {
+            document.getElementById("passwordId").innerHTML = "输入正确";
+            return true;
+        }
+    }
+    function checkRepwd(){
+        const paw = document.getElementById("paw").value;
+        const password = document.getElementById("password").value;
+        if(paw === password && paw !== "" && checkName() === true && checkPwd() === true ){
+            document.getElementById("passwordId").innerHTML="输入正确"
+            document.getElementById("btn").style.display="none"
+            document.getElementById("signup").style.display="block"
+            return true;
+        }else{
+            alert("请符合规范")
+            return false;
+        }
+    }
+</script>
