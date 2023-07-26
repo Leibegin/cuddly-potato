@@ -53,14 +53,15 @@
 </html>
 <script>
     document.getElementById("show").disabled=true;
+    const reg = /^\d{1,100}$/;
     function user() {
         const id = document.getElementById("id").value;
-        if (id !== "") {
+        if (id !== "" && reg.test(id)) {
             document.getElementById("show").disabled = false
             return true;
         } else {
             document.getElementById("show").disabled = true
-            alert("请输入id")
+            alert("请输入纯数字")
             return false;
         }
     }
