@@ -35,7 +35,7 @@
             font: normal 400 40px/2 楷体;
             text-align: center;
             text-decoration: none;
-            color: blue
+            color: black;
         }
         #login {
             width: 400px;
@@ -43,7 +43,10 @@
             font: normal 400 40px/2 楷体;
             text-align: center;
             text-decoration: none;
-            color: blue
+            color: blue;
+        }
+        #login:hover {
+            color:red;
         }
     </style>
 </head>
@@ -52,28 +55,27 @@
     <!-- 点击按钮登录-->
     <form role="form" action = "/loginIn" method="post">
         <span>账号：</span><input type="text" id="name" name = "name" placeholder="请输入账户名称"><br/><br/>
-        <span>密码：</span><input type="password" id = "password" placeholder="请输入账户密码" >
+        <span>密码：</span><input type="password" id = "password" name="password" placeholder="请输入账户密码" >
         <img id="eye" src="/image/eyeclose.jpg" alt=""><br/><br/>
         <input type="submit" id = "login" value = "登录">
     </form>
-    <script>
-        const eye = document.getElementById('eye');
-        const password = document.getElementById('password');
-        let flag = 1;
-        eye.onclick = function () {
-            if (flag === 1) {
-                password.type = 'text';
-                eye.src = '/image/eyeopen.jpg';
-                flag = 2;
-            } else {
-                password.type = 'password';
-                eye.src = '/image/eyeclose.jpg';
-                flag = 1;
-            }
-        }
-    </script>
 </div>
 </body>
 </html>
-
+<script>
+    const eye = document.getElementById('eye');
+    const password = document.getElementById('password');
+    let flag = 1;
+    eye.onclick = function () {
+        if (flag === 1) {
+            password.type = 'text';
+            eye.src = '/image/eyeopen.jpg';
+            flag = 2;
+        } else {
+            password.type = 'password';
+            eye.src = '/image/eyeclose.jpg';
+            flag = 1;
+        }
+    }
+</script>
 

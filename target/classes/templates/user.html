@@ -29,7 +29,7 @@
             font: normal 400 40px/2 楷体;
             text-align: center;
             text-decoration: none;
-            color: blue
+            color: black;
         }
         #show {
             width: 400px;
@@ -37,14 +37,32 @@
             font: normal 400 40px/2 楷体;
             text-align: center;
             text-decoration: none;
-            color: blue
+            color: blue;
+        }
+        #show:hover {
+            color:red;
         }
     </style>
 </head>
 <body>
 <form role="form" action = "/getUser" method="post">
-    <span>用户ID：</span><input type="text" id="id" name = "id"><br/><br/>
+    <span>用户ID：</span><input type="text" id="id" name = "id" oninput = "user()"><br/><br/>
     <input type="submit" id = "show" value = "查询">
 </form>
 </body>
 </html>
+<script>
+    document.getElementById("show").disabled=true;
+    function user() {
+        const id = document.getElementById("id").value;
+        if (id !== "") {
+            document.getElementById("show").disabled = false
+            return true;
+        } else {
+            document.getElementById("show").disabled = true
+            alert("请输入id")
+            return false;
+        }
+    }
+
+</script>

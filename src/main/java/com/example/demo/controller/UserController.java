@@ -29,11 +29,11 @@ public class UserController {
     }
     //与数据库进行比对，实现登录功能
     @RequestMapping(value = "/loginIn",method = RequestMethod.POST)
-    public String login(String name,String password){
+    public String loginIn(String name,String password) {
         User user = userService.LoginIn(name, password);
         log.info("name:{}",name );
         log.info("password:{}",password);
-        if(user !=null){
+        if(user != null){
             return "welcome";
         }else {
             return "error";
@@ -48,11 +48,12 @@ public class UserController {
     //利用Insert向数据库内添加数据 当账号在数据库已存在时报错
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String register(String name,String password) {
-        User username = userService.GatUser(name);
+        User user = userService.GatUser(name);
         log.info("name:{}", name);
         log.info("password:{}", password);
-        if (username != null) return "wrong";
-        else {
+        if (user != null) {
+            return "wrong";
+        }else {
             userService.Insert(name, password);
             return "success";
         }
