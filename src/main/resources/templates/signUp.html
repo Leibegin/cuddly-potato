@@ -63,6 +63,7 @@
             <div id="passwordId" class="red" style="color:red;"></div></div>
         <span>确认密码:</span><input type="password" id="paw">
         <img id="eye1" src="/image/eyeclose.jpg" alt=""><br/><br/>
+        <!--显示确定按钮，隐藏提交按钮，点击后依据判定触发-->
         <input type="button" id="btn" style="display: block" value="确定"
                onclick="checkRepwd()"/><br/><br/>
         <input type="submit" name="sign" id="signup" style="display: none" value="提交"  onclick="change()">
@@ -90,6 +91,7 @@
             return false;
         }
         if (reg1.test(password)) {
+            // 判定password是否为纯数字，如果是则不通过
             document.getElementById("passwordId").innerHTML = "请勿输入纯数字";
             return false;
         } else {
@@ -111,6 +113,7 @@
             alert("两次输入的密码不一致")
             return false;
         }else{
+            // 输入正确后隐藏确定按钮显示提交按钮，并将各文本框锁定以防止更改
             document.getElementById("passwordId").innerHTML="输入正确"
             document.getElementById("btn").style.display="none"
             document.getElementById("signup").style.display="block"
@@ -120,13 +123,16 @@
             return true;
         }
     }
-    //解锁用户名，密码，确认密码，以便获取
+    //解锁用户名，密码，确认密码，如果不解锁将无法获取他们的值，导致无法注册
     function change() {
         document.getElementById("name").disabled = false
         document.getElementById("password").disabled = false
         document.getElementById("paw").disabled = false
         return true;
     }
+    // 获取eye和password
+    // 功能：令初始值flag=1,当flag=1时，点击后将password从password类型转化为text类型，使得密码变成可见，同时转换eye的图标，并将flag变为2
+    //当flag=2时，点击后将password从text类型转化为password类型，使得密码变成不可见，同时转换eye的图标，并将flag变为1
     const eye = document.getElementById('eye');
     const password = document.getElementById('password');
     let flag = 1;
@@ -141,6 +147,9 @@
             flag = 1;
         }
     }
+    // 获取eye1和paw
+    // 功能：令初始值flor=1,当flor=1时，点击后将paw从password类型转化为text类型，使得密码变成可见，同时转换eye1的图标，并将flor变为2
+    //当flor=2时，点击后将paw从text类型转化为password类型，使得密码变成不可见，同时转换eye1的图标，并将flor变为1
     const eye1 = document.getElementById('eye1');
     const paw = document.getElementById('paw');
     let flor = 1
